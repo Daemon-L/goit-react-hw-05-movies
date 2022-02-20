@@ -25,7 +25,7 @@ function MovieDetailsPage() {
     
     return (
         <>
-            <Link to={location?.state?.from ?? "/movies"}>
+            <Link to={location?.state?.from ?? "/"}>
                  Go back
             </Link>
             <Container>
