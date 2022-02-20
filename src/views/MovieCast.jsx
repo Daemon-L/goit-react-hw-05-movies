@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import noimage from "../Images/avatar.png";
+import noimage from "../Images/images_80x120.png";
 import { GetMovieCast } from "../Services/MoviesApi";
+import { Container, ActorCard, Text } from './MovieCast.styled'
 
 function MovieCast() {
   const { movieId } = useParams();
@@ -22,19 +23,19 @@ function MovieCast() {
 
   return (
     <>
-      <ul>
+      <Container>
         {cast.map((item) => (
-          <li key={item.id}>
+          <ActorCard key={item.id}>
             <img
               src={item.profile_path?`https://image.tmdb.org/t/p/w300${item.profile_path}`:noimage}
               alt={item.name}
               width="80"
             />
-            <p>{item.name}</p>
-            <p>Character: {item.character}</p>
-          </li>
+            <h3>{item.name}</h3>
+            <Text>Character: {item.character}</Text>
+          </ActorCard>
         ))}
-      </ul>
+      </Container>
     </>
   );
 }

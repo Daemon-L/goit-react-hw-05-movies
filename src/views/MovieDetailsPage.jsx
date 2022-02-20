@@ -3,6 +3,8 @@ import { GetMovieDetails } from "../Services/MoviesApi";
 import { Outlet, useParams, Link, useLocation } from "react-router-dom";
 import noimage from "../Images/noimage.png";
 
+import { Container, AdditionalContainer } from './MovieDetailsPage.styled'
+
 function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState([]);
@@ -26,13 +28,12 @@ function MovieDetailsPage() {
             <Link to={location?.state?.from ?? "/movies"}>
                  Go back
             </Link>
-            <div>
+            <Container>
                 <img
                     src={movie.poster_path?`https://image.tmdb.org/t/p/w300${movie.poster_path}`:noimage}
                     alt={movie.title}
                     width="300"
                 />
-
                 <div>
                     <h1>{movie.original_title} ({movie.release_date?.slice(0, 4)})</h1>
                     <p>User score: {movie.vote_average * 10}%</p>
@@ -43,26 +44,26 @@ function MovieDetailsPage() {
                     <h2>Genres </h2>
                     <p>{movie.genres?.map((genre) => genre.name).join(", ")}</p>
                 </div>
-            </div>
-                
+            </Container>
+            <AdditionalContainer>   
             <h2>Additional information</h2>
-            <ul>
-                <li>
-                    <Link
-                        to={`/movies/${movie.id}/cast`}
-                        state={location?.state?.from && { from: location.state.from }}
-                        >Cast
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        to={`/movies/${movie.id}/reviews`}
-                        state={location?.state?.from && { from: location.state.from }}
-                        >Reviews
-                    </Link>
-                </li>
-            </ul>
-            
+                <ul>
+                    <li>
+                        <Link
+                            to={`/movies/${movie.id}/cast`}
+                            state={location?.state?.from && { from: location.state.from }}
+                            >Cast
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to={`/movies/${movie.id}/reviews`}
+                            state={location?.state?.from && { from: location.state.from }}
+                            >Reviews
+                        </Link>
+                    </li>
+                </ul>
+            </AdditionalContainer>
             <Outlet />
         </>
     );
