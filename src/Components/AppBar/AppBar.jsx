@@ -1,4 +1,4 @@
-// import { Outlet, NavLink } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Container, Nav, Link } from './AppBar.styled'
 
 function AppBar() {
@@ -8,10 +8,8 @@ function AppBar() {
                 <Link to="/">Home</Link>
                 <Link to="/movies">Movies</Link>
             </Nav>
-
-            
+            <Outlet />
         </Container>
     );
 }
-
 export default AppBar;

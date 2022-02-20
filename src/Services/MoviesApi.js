@@ -19,12 +19,12 @@ export async function GetMoviesSearch(searchQuery) {
 
 export async function GetMovieDetails(movie_id) {
   const responce = await axios.get(
-    `${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}&language=en-US`
+    `${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}`
   );
   return responce.data;
 }
 
-export async function GetMovieActors(movie_id) {
+export async function GetMovieCast(movie_id) {
   const responce = await axios.get(
     `${BASE_URL}/movie/${movie_id}/credits?api_key=${API_KEY}&language=en-US`
   );
@@ -41,5 +41,5 @@ export async function GetMovieReviews(movie_id) {
 // get-trending                https://api.themoviedb.org/3/trending/all/day?api_key=<<api_key>>
 // search-movies               https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
 // get-movie-details           https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-// get-movie-credits actors    https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
+// get-movie-credits cast      https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
 // get-movie-reviews           https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=<<api_key>>&language=en-US&page=1

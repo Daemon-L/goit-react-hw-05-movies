@@ -10,7 +10,8 @@ function ListMovies() {
         try {
             const data = await GetMoviesTrending();
             setResults(data.results);
-        } catch (error) {
+        }
+        catch (error) {
             console.log(error);
         }}
         fetchMovies();

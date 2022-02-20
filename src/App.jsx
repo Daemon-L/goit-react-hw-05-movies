@@ -1,31 +1,49 @@
-import './App.css';
-
 import { Routes, Route, Navigate } from "react-router-dom";
+import { lazy, Suspense } from "react";
 
 import AppBar from "./Components/AppBar/AppBar";
 import ListMovies from "./views/ListMovies";
+// import MoviesPage from "./views/MoviesPage";
+// import MovieDetailsPage from "./views/MovieDetailsPage";
+// import MovieCast from "./views/MovieCast";
+// import Reviews from "./views/Reviews";
+
+const MoviesPage = lazy(() =>
+  import("./views/MoviesPage.jsx")
+);
+
+const MovieDetailsPage = lazy(() =>
+  import("./views/MovieDetailsPage.jsx")
+);
+
+const MovieCast = lazy(() =>
+  import("./views/MovieCast.jsx")
+);
+
+const Reviews = lazy(() =>
+  import("./views/Reviews.jsx")
+);
 
 function App() {
   return (
-    <div>
-      
+    <Suspense fallback="Loading...">
       <Routes>
-        <Route path="/" element={<AppBar />}/>
-        <Route index element={<ListMovies />} />
+        <Route path="/" element={<AppBar />}>
 
-        {/* <Route path="/movies" element={<MoviesPage />} />
-        <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
-        <Route path="/movies/:movieId/cast" element={<Cast />} />
-        <Route path="/movies/:movieId/reviews" element={<Reviews />}/> */}
+          <Route index element={<ListMovies />} />
+          <Route path="/movies" element={<MoviesPage />} />
 
+          <Route path="/movies/:movieId/*" element={<MovieDetailsPage />} >
+            <Route path="cast" element={<MovieCast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
 
+        </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-
-    </div>
+    </Suspense>
   );
 }
-
 export default App;
 
 // '/movies' - компонент <MoviesPage>, страница поиска фильмов по ключевому слову.
