@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import noimage from "../Images/images_80x120.png";
-import { GetMovieCast } from "../Services/MoviesApi";
-import { Container, ActorCard, Text } from './MovieCast.styled'
+import noimage from "../../Images/images_80x120.png";
+import { GetMovieCast } from "../../Services/MoviesApi";
+import { Container, ActorCard, Text } from '../MovieCast/MovieCast.styled'
 
 function MovieCast() {
   const { movieId } = useParams();

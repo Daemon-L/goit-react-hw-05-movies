@@ -3,9 +3,11 @@ import { useSearchParams } from "react-router-dom";
 
 function Searchbar () {
 
-  const [searchField, setSearchField] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
-  
+  const query = searchParams.get("query") ? searchParams.get("query") : "";
+
+  const [searchField, setSearchField] = useState(query);
+   
   const handleSearch = (evt) => {
     setSearchField(evt.currentTarget.value.toLowerCase() );   
   };
@@ -18,7 +20,6 @@ function Searchbar () {
       return;
     }
     setSearchParams({ query: evt.currentTarget.elements.query.value });
-    setSearchField("");
   };
 
   return (
@@ -28,6 +29,7 @@ function Searchbar () {
           type="text"
           autoComplete="off"
           name="query"
+          placeholder="Search movie"
           autoFocus
           value={searchField}
           onChange={handleSearch}

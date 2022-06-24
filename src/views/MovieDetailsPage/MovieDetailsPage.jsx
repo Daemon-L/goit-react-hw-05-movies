@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { GetMovieDetails } from "../Services/MoviesApi";
+import { GetMovieDetails } from "../../Services/MoviesApi";
 import { Outlet, useParams, Link, useLocation } from "react-router-dom";
-import noimage from "../Images/noimage.png";
+import noimage from "../../Images/noimage.png";
 
 import { Container, AdditionalContainer } from './MovieDetailsPage.styled'
 
